@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color picker</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #wrapper #picker {
+            width: 25rem;
+            height: 40rem;
+            padding: 2%;
+            background-color: #222;
+            box-shadow: 0.3rem 0.3rem 0.7rem grey;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        #wrapper #picker input,
+        #wrapper #picker div {
+            flex: 1 1 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            color: #000;
+            font-size: 1.5rem;
+            padding: 1%;
+            border-radius: 2%;
+            text-align: center;
+            background-color: white;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 0.5rem;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 1rem;
+            height: 1rem;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #wrapper #picker div {
+            color: white;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #picker #red {
+            background: linear-gradient(90deg, #000, red);
+        }
+
+        #picker #green {
+            background: linear-gradient(90deg, #000, green);
+        }
+
+        #picker #blue {
+            background: linear-gradient(90deg, #000, blue);
+        }
+        @media screen and (max-width: 480px) {
+            #wrapper #picker {
+                width: 20rem;
+                height: 35rem;
+            }
+
+            input[type="text"] {
+                font-size: 1rem;
+                padding: 0.5%;
+            }
+
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="picker">
+            <input type="text" id="color_code" value="rgb(255, 255, 255)" disabled>
+            <div>Red</div>
+            <input type="range" id="red" min="0" max="255" value="255">
+            <div>Green</div>
+            <input type="range" id="green" min="0" max="255" value="255">
+            <div>Blue</div>
+            <input type="range" id="blue" min="0" max="255" value="255">
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+
+
+        //CODE FUNCTION STARTS HERE
+        function colorChange() {
+
+            //Declaration of variables starts 
+            wrapper = document.getElementById("wrapper");
+            colorCode = document.getElementById("color_code");
+            red = document.getElementById("red");
+            green = document.getElementById("green");
+            blue = document.getElementById("blue");
+            redValue = red.value;
+            greenValue = green.value;
+            blueValue = blue.value;
+            //Declaration of variables ends
+
+            //Code to display color code starts
+            colorCode.value = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
+            wrapper.style.backgroundColor = colorCode.value;
+            //Code to display color code ends
+
+        }
+        //CODE FUNCTION ENDS HERE
+
+
+        //CODE TO CHANGE BG-COLOR ON SLIDER INPUT STARTS HERE
+        red.addEventListener('input', colorChange);
+        green.addEventListener('input', colorChange);
+        blue.addEventListener('input', colorChange);
+        //CODE TO CHANGE BG-COLOR ON SLIDER INPUT ENDS HERE
+
+        
+    </script>
+</body>
+</html>
